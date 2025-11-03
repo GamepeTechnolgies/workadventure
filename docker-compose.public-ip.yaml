@@ -237,11 +237,6 @@ services:
       traefik.http.routers.map-storage.rule: "Host(`${DOMAIN}`) && PathPrefix(`/map-storage`)"
       traefik.http.routers.map-storage.entryPoints: "web"
       traefik.http.services.map-storage.loadbalancer.server.port: "3000"
-      traefik.http.middlewares.strip-assets-prefix.stripprefix.prefixes: "/assets"
-      traefik.http.routers.map-storage-assets.middlewares: "strip-assets-prefix@docker"
-      traefik.http.routers.map-storage-assets.rule: "Host(`${DOMAIN}`) && PathPrefix(`/assets`)"
-      traefik.http.routers.map-storage-assets.entryPoints: "web"
-      traefik.http.routers.map-storage-assets.service: "map-storage"
     restart: ${RESTART_POLICY:-unless-stopped}
 
 volumes:
